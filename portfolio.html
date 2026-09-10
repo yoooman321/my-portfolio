@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>李侑蓮 Fei — 前端工程師</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ink:        #16202b;
+    --ink-soft:   #47566a;
+    --ink-faint:  #7b8798;
+    --paper:      #f6f8fa;
+    --surface:    #ffffff;
+    --rule:       #dde3ea;
+    --rule-soft:  #eaeef3;
+    --accent:     #0d7264;
+    --accent-dim: #0d726418;
+    --mark:       #a4562b;
+    --mark-dim:   #a4562b14;
+    --shadow:     0 1px 2px #16202b0a, 0 8px 24px -16px #16202b1f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #e5eaf0; --ink-soft: #a3b0c0; --ink-faint: #6d7b8d;
+      --paper: #0e141b; --surface: #141c25;
+      --rule: #263241; --rule-soft: #1c2530;
+      --accent: #4ec4ac; --accent-dim: #4ec4ac1a;
+      --mark: #d68a5a; --mark-dim: #d68a5a14;
+      --shadow: 0 1px 2px #0006, 0 10px 30px -18px #000a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #e5eaf0; --ink-soft: #a3b0c0; --ink-faint: #6d7b8d;
+    --paper: #0e141b; --surface: #141c25;
+    --rule: #263241; --rule-soft: #1c2530;
+    --accent: #4ec4ac; --accent-dim: #4ec4ac1a;
+    --mark: #d68a5a; --mark-dim: #d68a5a14;
+    --shadow: 0 1px 2px #0006, 0 10px 30px -18px #000a;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px; line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 60rem; margin: 0 auto; padding: 0 1.5rem 6rem; }
+
+  /* ── 個人資訊 ─────────────────────────────────────── */
+  .profile { padding: 4rem 0 2.5rem; display: flex; flex-direction: column; gap: 1.1rem; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-faint); margin: 0;
+  }
+  h1 {
+    font-family: "Noto Serif TC", Georgia, serif;
+    font-weight: 700; font-size: clamp(2.1rem, 5.5vw, 3.1rem);
+    line-height: 1.15; margin: 0; letter-spacing: -.01em; text-wrap: balance;
+  }
+  h1 .en { color: var(--ink-faint); font-weight: 600; }
+  .tagline {
+    font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+    color: var(--ink); max-width: 44ch; margin: 0; font-weight: 500;
+  }
+  .bio { color: var(--ink-soft); max-width: 52ch; margin: 0; font-size: .97rem; }
+
+  .meta { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: .25rem; }
+  .meta a, .meta span {
+    font-family: "IBM Plex Mono", monospace; font-size: .85rem;
+    color: var(--ink-soft); text-decoration: none;
+    display: inline-flex; align-items: center; gap: .4rem;
+  }
+  .meta a:hover { color: var(--accent); }
+  .meta a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* ── 技能 ─────────────────────────────────────────── */
+  .skills { border-top: 1px solid var(--rule); padding-top: 1.75rem; display: grid; gap: 1rem; }
+  @media (min-width: 44rem) { .skills { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+  .skill-group__label {
+    font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint);
+    margin: 0 0 .55rem;
+  }
+  .stack { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .chip {
+    font-family: "IBM Plex Mono", monospace; font-size: .78rem;
+    padding: .28rem .6rem; border: 1px solid var(--rule);
+    border-radius: 4px; color: var(--ink-soft); background: var(--surface);
+  }
+  .chip--lead { border-color: var(--accent); color: var(--accent); }
+
+  /* ── tabs ─────────────────────────────────────────── */
+  .tabs-head {
+    margin-top: 3.5rem; border-bottom: 1px solid var(--rule);
+    display: flex; gap: .25rem; overflow-x: auto;
+  }
+  .tab {
+    appearance: none; background: none; border: 0; cursor: pointer;
+    font-family: inherit; font-size: .95rem; font-weight: 500; color: var(--ink-faint);
+    padding: .75rem 1rem; border-bottom: 2px solid transparent;
+    margin-bottom: -1px; white-space: nowrap; transition: color .15s, border-color .15s;
+    display: flex; align-items: baseline; gap: .55rem;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 700; }
+  .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 3px; }
+  .tab__year {
+    font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+    color: var(--ink-faint); font-weight: 400; font-variant-numeric: tabular-nums;
+  }
+
+  .panel[hidden] { display: none; }
+  .panel { padding-top: 2.5rem; }
+
+  /* ── 共用 ─────────────────────────────────────────── */
+  section { padding-top: 3rem; }
+  section:first-child { padding-top: 0; }
+  h2 {
+    font-family: "Noto Serif TC", Georgia, serif;
+    font-size: 1.45rem; font-weight: 600; margin: 0 0 .35rem; letter-spacing: -.01em;
+  }
+  .section-note { color: var(--ink-faint); font-size: .9rem; margin: 0 0 1.6rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent); }
+  code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .875em; }
+  code { background: var(--rule-soft); padding: .1em .35em; border-radius: 3px; color: var(--ink); }
+
+  /* ── 專案 header ──────────────────────────────────── */
+  .proj-head { display: flex; flex-direction: column; gap: 1rem; }
+  .proj-title {
+    font-family: "Noto Serif TC", Georgia, serif;
+    font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 700; margin: 0; line-height: 1.2;
+  }
+  .proj-lede { font-size: 1.05rem; color: var(--ink-soft); max-width: 46ch; margin: 0; }
+  .links { display: flex; flex-wrap: wrap; gap: .7rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .55rem 1.05rem; border-radius: 6px;
+    font-size: .88rem; font-weight: 500; text-decoration: none;
+    border: 1px solid var(--rule); color: var(--ink);
+    background: var(--surface); transition: border-color .15s, transform .15s;
+  }
+  .btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .btn--primary { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+  .btn--primary:hover { opacity: .9; }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .note-inline { font-size: .82rem; color: var(--ink-faint); align-self: center; }
+
+  /* ── 數據 ─────────────────────────────────────────── */
+  .stats {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule);
+    border-radius: 8px; overflow: hidden;
+  }
+  @media (min-width: 40rem) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .stat { background: var(--surface); padding: 1.05rem 1.2rem; }
+  .stat__n {
+    font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums;
+    font-size: 1.55rem; font-weight: 600; line-height: 1.2;
+  }
+  .stat__l { font-size: .78rem; color: var(--ink-faint); margin-top: .1rem; }
+
+  /* ── 時間軸 ───────────────────────────────────────── */
+  .log { display: flex; flex-direction: column; }
+  .entry { display: grid; grid-template-columns: 5.5rem 1fr; gap: 0 1.5rem; padding-bottom: 2.1rem; }
+  .entry__rail {
+    font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums;
+    font-size: .8rem; color: var(--ink-faint); padding-top: .2rem;
+  }
+  .entry__body { position: relative; padding-left: 1.5rem; }
+  .entry__body::before {
+    content: ""; position: absolute; left: 0; top: .55rem; bottom: -2.1rem;
+    width: 1px; background: var(--rule);
+  }
+  .entry:last-child .entry__body::before { display: none; }
+  .entry__body::after {
+    content: ""; position: absolute; left: -3.5px; top: .5rem;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--paper);
+  }
+  .entry--gap .entry__body::before {
+    background: repeating-linear-gradient(to bottom, var(--rule) 0 4px, transparent 4px 9px);
+  }
+  .entry--gap .entry__body::after { background: var(--paper); border-color: var(--rule); }
+  .entry--gap .entry__title { color: var(--ink-faint); font-style: italic; }
+  .entry__title { font-weight: 700; font-size: 1.02rem; margin: 0 0 .3rem; }
+  .entry__desc { color: var(--ink-soft); font-size: .93rem; margin: 0; }
+  .entry__desc + .entry__desc { margin-top: .5rem; }
+
+  .tag {
+    display: inline-block; font-family: "IBM Plex Mono", monospace;
+    font-size: .7rem; letter-spacing: .06em; text-transform: uppercase;
+    padding: .1rem .45rem; border-radius: 3px; vertical-align: .12em; margin-left: .5rem;
+  }
+  .tag--pivot { background: var(--mark-dim); color: var(--mark); border: 1px solid var(--mark); }
+  .tag--ship  { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); }
+
+  /* ── 卡片 ─────────────────────────────────────────── */
+  .cards { display: flex; flex-direction: column; gap: 1rem; }
+  .card {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: 8px; padding: 1.35rem 1.45rem; box-shadow: var(--shadow);
+  }
+  .card__head { display: flex; align-items: baseline; gap: .75rem; flex-wrap: wrap; margin-bottom: .55rem; }
+  .card__date {
+    font-family: "IBM Plex Mono", monospace; font-size: .78rem;
+    color: var(--ink-faint); font-variant-numeric: tabular-nums;
+  }
+  .card__title { font-weight: 700; font-size: 1.01rem; margin: 0; }
+  .card__body { color: var(--ink-soft); font-size: .93rem; margin: 0; }
+  .card__body + .card__body { margin-top: .6rem; }
+  .revoked { text-decoration: line-through; color: var(--ink-faint); }
+  .pull {
+    border-left: 2px solid var(--accent); padding-left: .9rem;
+    margin: .8rem 0 0; color: var(--ink); font-weight: 500;
+  }
+
+  /* ── 表格 ─────────────────────────────────────────── */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; font-size: .89rem; background: var(--surface); }
+  th, td { text-align: left; padding: .68rem 1rem; border-bottom: 1px solid var(--rule-soft); }
+  th {
+    font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
+    font-weight: 500; white-space: nowrap;
+  }
+  tr:last-child td { border-bottom: 0; }
+  td.num { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ── 文件 / 截圖 ──────────────────────────────────── */
+  .grid2 { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+  @media (min-width: 48rem) { .grid2 { grid-template-columns: repeat(2, 1fr); } }
+  .cell { background: var(--surface); padding: 1.05rem 1.2rem; }
+  .cell__name { font-family: "IBM Plex Mono", monospace; font-size: .84rem; font-weight: 600; color: var(--accent); }
+  .cell__desc { font-size: .87rem; color: var(--ink-soft); margin: .28rem 0 0; }
+
+  /* 每組截圖用自己的原生比例，避免 cover 把表格最右欄裁掉 */
+  .shots { display: grid; gap: 1rem; --shot-ratio: 16 / 10; --shot-bg: var(--rule-soft); }
+  .shots--class { --shot-ratio: 19 / 10; }
+  .shots--vocab { --shot-ratio: 1365 / 931; --shot-bg: #0a0d0c; }
+  @media (min-width: 44rem) { .shots { grid-template-columns: repeat(2, 1fr); } }
+  .shot {
+    position: relative; margin: 0;
+    border: 1px solid var(--rule); border-radius: 8px;
+    overflow: hidden; background: var(--surface);
+  }
+  .shot img, .shot video {
+    display: block; width: 100%;
+    aspect-ratio: var(--shot-ratio);
+    object-fit: contain; background: var(--shot-bg);
+  }
+  /* 讓讀者一眼看出這格會動 */
+  .shot__badge {
+    position: absolute; top: .55rem; right: .55rem;
+    font-family: "IBM Plex Mono", monospace; font-size: .67rem; letter-spacing: .06em;
+    padding: .18rem .5rem; border-radius: 3px;
+    background: #0e141bd9; color: #e5eaf0;
+  }
+  .shot__cap { padding: .65rem 1rem; font-size: .84rem; color: var(--ink-soft); border-top: 1px solid var(--rule-soft); }
+
+  .foot {
+    margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule);
+    color: var(--ink-faint); font-size: .86rem;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+  @media (max-width: 34rem) {
+    .entry { grid-template-columns: 1fr; gap: .2rem; }
+    .entry__rail { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ══════════ 個人資訊 ══════════ -->
+  <header class="profile">
+    <p class="eyebrow">Frontend Engineer</p>
+    <h1>李侑蓮 <span class="en">Fei</span></h1>
+    <p class="tagline">
+      喜歡把設計稿完美呈現的前端工程師。
+    </p>
+    <p class="bio">
+      Vue.js 三年、React 一年半。習慣動手前先把畫面想清楚——包含各種空狀態、
+      錯誤狀態和手機版，再開始寫程式。做決定時會把「為什麼」和「代價」一起寫下來，
+      包括後來被自己推翻的那些。
+    </p>
+    <p class="bio">
+      個性認真負責、好溝通。平常喜歡運動，主要打羽球。
+    </p>
+    <div class="meta">
+      <a href="mailto:yoooman321@gmail.com">✉ yoooman321@gmail.com</a>
+      <a href="https://github.com/yoooman321" target="_blank" rel="noopener">↗ github.com/yoooman321</a>
+    </div>
+  </header>
+
+  <div class="skills">
+    <div class="skill-group">
+      <p class="skill-group__label">主要</p>
+      <div class="stack">
+        <span class="chip chip--lead">Vue 3</span>
+        <span class="chip chip--lead">React</span>
+        <span class="chip chip--lead">TypeScript</span>
+        <span class="chip">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group__label">框架與工具</p>
+      <div class="stack">
+        <span class="chip">Next.js</span>
+        <span class="chip">Vite</span>
+        <span class="chip">Tailwind CSS</span>
+        <span class="chip">Pinia</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group__label">後端與部署</p>
+      <div class="stack">
+        <span class="chip">Prisma</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">Firebase</span>
+        <span class="chip">PHP</span>
+        <span class="chip">Vercel</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 專案切換 ══════════ -->
+  <div class="tabs-head" role="tablist" aria-label="專案">
+    <button class="tab" role="tab" id="tab-vocab" aria-controls="panel-vocab" aria-selected="true">
+      VocabMaster <span class="tab__year">2026</span>
+    </button>
+    <button class="tab" role="tab" id="tab-class" aria-controls="panel-class" aria-selected="false" tabindex="-1">
+      上課問答系統 <span class="tab__year">2022</span>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- PANEL 1：VocabMaster                              -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-vocab" role="tabpanel" aria-labelledby="tab-vocab" tabindex="0">
+
+    <div class="proj-head">
+      <p class="eyebrow">個人專案 · 2026/07 – 09 · 單人開發</p>
+      <h2 class="proj-title">VocabMaster</h2>
+      <p class="proj-lede">
+        用間隔重複幫助記憶的背單字 App。從零規劃、開發到部署上線，
+        重點在「怎麼做決定」而不只是「做了什麼功能」。
+      </p>
+      <div class="links">
+        <a class="btn btn--primary" href="https://vocal-master-seven.vercel.app/" target="_blank" rel="noopener">開啟線上版 →</a>
+        <a class="btn" href="https://github.com/yoooman321/study-hard" target="_blank" rel="noopener">GitHub 原始碼</a>
+      </div>
+    </div>
+
+    <section>
+      <h2>一分鐘看懂</h2>
+      <p class="section-note">兩個月，從規劃到上線。</p>
+      <div class="stats">
+        <div class="stat"><div class="stat__n">62</div><div class="stat__l">React 元件</div></div>
+        <div class="stat"><div class="stat__n">20</div><div class="stat__l">設計稿（含 RWD）</div></div>
+        <div class="stat"><div class="stat__n">3</div><div class="stat__l">資料表 + migration</div></div>
+        <div class="stat"><div class="stat__n">701</div><div class="stat__l">行技術筆記</div></div>
+      </div>
+      <div class="stack" style="margin-top:1.2rem">
+        <span class="chip">Next.js 16 (App Router)</span>
+        <span class="chip">React 19</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Prisma 6</span>
+        <span class="chip">PostgreSQL / Neon</span>
+        <span class="chip">Tailwind CSS 4</span>
+        <span class="chip">Server Actions</span>
+        <span class="chip">Vercel</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>核心功能</h2>
+      <p class="section-note">間隔重複的排程演算法是核心，其餘功能都圍繞它。</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>模組</th><th>做了什麼</th><th>技術重點</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>複習排程</strong></td>
+              <td>六階段間隔重複（1／2／4／7／15／30 天），翻卡作答後即時更新</td>
+              <td>Server Action + <code>$transaction</code> + 指數退避重試</td>
+            </tr>
+            <tr>
+              <td><strong>測驗</strong></td>
+              <td>選擇題與拼字兩種模式、干擾選項自動生成、錯題檢討</td>
+              <td>干擾選項去重與降級策略、URL 即狀態</td>
+            </tr>
+            <tr>
+              <td><strong>學習統計</strong></td>
+              <td>本月成果、熟練度分布、近 14 天趨勢、12 週打卡熱力圖、連續天數</td>
+              <td>手刻 SVG 圖表、時間區間查詢、gap filling</td>
+            </tr>
+            <tr>
+              <td><strong>卡組管理</strong></td>
+              <td>建立卡組、批次新增單字、單字列表含搜尋與篩選</td>
+              <td>巢狀 create、compound component、樂觀更新</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>開發歷程</h2>
+      <p class="section-note">包含中途停擺三週、重新排程，以及上線前砍掉的功能。</p>
+      <div class="log">
+        <div class="entry">
+          <div class="entry__rail">07/14</div>
+          <div class="entry__body">
+            <p class="entry__title">學習頁 UI 與 Prisma 破冰</p>
+            <p class="entry__desc">翻卡動畫、「認識／不認識」流程、成果統計頁。同週完成 schema 設計與資料庫串接，把假資料全面換掉。</p>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry__rail">07/21</div>
+          <div class="entry__body">
+            <p class="entry__title">複習結果寫回資料庫<span class="tag tag--ship">關鍵轉折</span></p>
+            <p class="entry__desc">這週之後 App 才「真的能用」。把間隔常數抽成共用模組，修掉一個因為魔術數字造成的階數 off-by-one。</p>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry__rail">07/28</div>
+          <div class="entry__body">
+            <p class="entry__title">首頁接上真實資料</p>
+            <p class="entry__desc">今日待複習數量、跨卡組複習。同時決定<strong>不做「正確率」</strong>——當時沒有存作答歷史，硬做只會是假數字。</p>
+          </div>
+        </div>
+        <div class="entry entry--gap">
+          <div class="entry__rail">08/04 – 08/24</div>
+          <div class="entry__body">
+            <p class="entry__title">停擺三週</p>
+            <p class="entry__desc">現實生活因素中斷。重啟時沒有假裝進度還在，而是重新盤點剩餘工作、把原訂三週壓縮成兩週衝刺，並明確列出要砍掉的功能。</p>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry__rail">08/27</div>
+          <div class="entry__body">
+            <p class="entry__title">推翻自己的資料庫設計<span class="tag tag--pivot">決策反轉</span></p>
+            <p class="entry__desc">為了做統計頁，發現七月決定的「不留複習歷史」讓打卡日曆根本做不出來。新增歷史表，並在文件中保留原決定與推翻理由。</p>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry__rail">08/28 – 09/01</div>
+          <div class="entry__body">
+            <p class="entry__title">測驗頁完成</p>
+            <p class="entry__desc">兩種測驗模式與錯題檢討頁。過程中修掉數個 React 常見陷阱：元件 <code>key</code> 造成的狀態殘留、事件處理中的 stale closure，以及一個會讓伺服器卡死的無限迴圈。</p>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry__rail">09/02 – 09/04</div>
+          <div class="entry__body">
+            <p class="entry__title">統計頁與資料層</p>
+            <p class="entry__desc">先寫 seed 腳本產生 12 週的假歷史資料——沒有歷史資料，熱力圖和趨勢圖等於在沒有輸出的情況下開發。</p>
+            <p class="entry__desc">四張圖表全部手刻 SVG，並抽出可重用的 count-up hook 與時間區間工具。</p>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry__rail">09/05 – 09/07</div>
+          <div class="entry__body">
+            <p class="entry__title">手機版 RWD</p>
+            <p class="entry__desc">先畫七支手機版設計稿再動手改。側邊欄改成底部導覽列、修掉多處會爆版的固定寬度，並建立語意化斷點讓三個導覽元件永遠同步切換。</p>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry__rail">09/10</div>
+          <div class="entry__body">
+            <p class="entry__title">部署上線<span class="tag tag--ship">Shipped</span></p>
+            <p class="entry__desc">SQLite 遷移到 PostgreSQL、Vercel 部署。過程踩到三個只在正式環境才會出現的問題，都記錄在下方。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>幾個做過的決定</h2>
+      <p class="section-note">每個決定都連同「為什麼」與「代價」寫進專案文件，包括後來被推翻的。</p>
+      <div class="cards">
+
+        <div class="card">
+          <div class="card__head">
+            <span class="card__date">07/18 → 08/27</span>
+            <p class="card__title">從「不留歷史」到「留下每一筆」</p>
+          </div>
+          <p class="card__body"><span class="revoked">最初決定只存「可排程的狀態」，不留每次複習的歷史，理由是保持 schema 精簡。</span></p>
+          <p class="card__body">
+            做統計頁時才發現打卡日曆與趨勢圖<strong>做不出來</strong>——最後複習時間每次都被覆蓋，昨天的紀錄永遠救不回來。
+            曾考慮改用一個計數欄位，但那是「帳戶餘額」，你沒辦法從餘額反推出每一天存了多少錢。
+          </p>
+          <p class="pull">明細可以推導出總計，總計推導不回明細。資料粒度一旦丟掉就回不來。</p>
+        </div>
+
+        <div class="card">
+          <div class="card__head">
+            <span class="card__date">07/23</span>
+            <p class="card__title">兩條刻意不對稱的排程規則</p>
+          </div>
+          <p class="card__body"><strong>只有到期時答對才會進階</strong>——否則使用者可以在一個下午重複刷同一個字十次，系統就會以為他熟練了。</p>
+          <p class="card__body"><strong>答錯一律退階</strong>，不管有沒有到期——「忘記」是客觀事實，跟排程無關。</p>
+          <p class="card__body">兩條規則的不對稱來自這個功能真正的目的：長期記憶，不是短期分數。</p>
+        </div>
+
+        <div class="card">
+          <div class="card__head">
+            <span class="card__date">08/30</span>
+            <p class="card__title">刻意不做冪等鍵</p>
+          </div>
+          <p class="card__body">複習時要同時更新排程與寫入歷史，用交易綁成原子操作，外層加上最多五次的指數退避重試。</p>
+          <p class="card__body">
+            重試可能造成重複寫入，標準解法是加一個唯一的 idempotency key。評估後<strong>決定不做</strong>：
+            重試發生在同一個 Server Action 內、機率極低，後果只是圖表某天多算一次。
+          </p>
+          <p class="pull">但把「什麼情況下該做」寫進了文件：跨網路呼叫、後果不可逆、高併發。</p>
+        </div>
+
+        <div class="card">
+          <div class="card__head">
+            <span class="card__date">09/03</span>
+            <p class="card__title">移除一個已經畫好設計稿的功能</p>
+          </div>
+          <p class="card__body">
+            統計頁原本有時間篩選 Tab。但版面調整後，數字卡固定顯示本月、熟練度是當下快照、
+            長條圖是近 14 天、熱力圖是 12 週——<strong>每一塊都有自己天然的時間範圍，那組 Tab 已經沒有東西可以控制</strong>。
+          </p>
+          <p class="pull">一個點了沒反應的控制項，比沒有那個控制項更糟——使用者會以為 App 壞了。</p>
+        </div>
+
+        <div class="card">
+          <div class="card__head">
+            <span class="card__date">09/04</span>
+            <p class="card__title">用數據回答「需不需要 partition」</p>
+          </div>
+          <p class="card__body">擔心複習紀錄長大後查詢變慢，於是建了一張兩百萬筆的測試表實際量測，而不是憑感覺加索引或提早分區。</p>
+          <div class="table-scroll" style="margin-top:.85rem">
+            <table>
+              <thead><tr><th>情況</th><th>執行計畫</th><th class="num">查一個月</th></tr></thead>
+              <tbody>
+                <tr><td>沒有索引</td><td><code>SCAN</code>（全表掃描）</td><td class="num">70 ms</td></tr>
+                <tr><td>有索引</td><td><code>SEARCH USING COVERING INDEX</code></td><td class="num">&lt; 1 ms</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="card__body" style="margin-top:.85rem">
+            結論是索引綽綽有餘，partition 解決的通常是<strong>維運</strong>問題而不是查詢速度。
+            並順手修正一個誤解：高基數不會讓索引變差，反而讓它更有效。
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <h2>部署踩到的坑</h2>
+      <p class="section-note">三個都只在正式環境出現，本機再怎麼測都不會遇到。</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card__head"><p class="card__title">靜態預渲染讓資料凍結</p></div>
+          <p class="card__body">
+            部署前讀 production build 的路由表，發現首頁和統計頁被標成靜態——資料會凍結在建置那一刻。
+            根因是 <strong>Next.js 只認得 <code>fetch()</code>，看不懂 ORM</strong>，所以判定這兩頁沒有動態資料。
+            開發模式每次都重新渲染，永遠不會重現。
+          </p>
+        </div>
+        <div class="card">
+          <div class="card__head"><p class="card__title">原生查詢引擎裝不進 serverless</p></div>
+          <p class="card__body">
+            Prisma 的查詢引擎是 Rust 編譯的原生二進位，<strong>每個平台一份</strong>。
+            本機是 macOS arm64、雲端是 Linux x64，建置成功但一開頁面就 500。
+          </p>
+          <p class="card__body">
+            官方文件的兩個解法在這個組合下都沒生效。最後改用 driver adapter + client engine——
+            <strong>純 TypeScript／WASM，根本沒有平台專屬的檔案要打包</strong>，從源頭消除問題。
+          </p>
+        </div>
+        <div class="card">
+          <div class="card__head"><p class="card__title">時區：本機正確、上線後每天錯八小時</p></div>
+          <p class="card__body">
+            資料本身永遠正確（時間戳是絕對時刻），錯的是「換算成日曆」那一步。
+            UTC 伺服器上，台北凌晨 0 到 8 點的操作全部會被記到前一天——熱力圖點錯格、連續天數可能無故斷掉。
+          </p>
+          <p class="card__body">解法是在伺服器啟動時統一時區，讓伺服器與使用者用同一本日曆。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>專案文件</h2>
+      <p class="section-note">開發過程中同步維護，不是事後補的。</p>
+      <div class="grid2">
+        <div class="cell">
+          <div class="cell__name">schedule.md</div>
+          <p class="cell__desc">每日排程與里程碑。含中途停擺後的重新規劃，以及明確標示「這次砍掉了什麼」。</p>
+        </div>
+        <div class="cell">
+          <div class="cell__name">TODO.md</div>
+          <p class="cell__desc">待辦與技術債。每一條都附上症狀、影響範圍與暫時解法，避免未來被誤刪。</p>
+        </div>
+        <div class="cell">
+          <div class="cell__name">notes.md</div>
+          <p class="cell__desc">700 行的通用原則整理。每條都附上當初踩到的實例——沒有事件的原則記不住。</p>
+        </div>
+        <div class="cell">
+          <div class="cell__name">design/</div>
+          <p class="cell__desc">20 份可互動的設計稿。桌機、手機、各種空狀態，動手前先確認長相。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>畫面</h2>
+      <p class="section-note">深色主題，桌機與手機皆已適配。依使用流程排序：進入 → 複習 → 測驗 → 回顧。</p>
+      <div class="shots shots--vocab">
+
+        <figure class="shot">
+          <img src="assets/vocab-home.png" alt="首頁：今日學習計畫、卡組列表與各組熟練度" loading="lazy">
+          <figcaption class="shot__cap">
+            <strong>首頁</strong>——開場先講「今天還有幾個字要複習」，
+            卡組列表附熟練度進度條；標題列同時顯示連續學習天數
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <video muted loop playsinline preload="metadata" poster="assets/vocab-review-poster.jpg"
+                 aria-label="複習翻卡示範影片：卡片翻面顯示中文，再選擇學會了或還不會">
+            <source src="assets/vocab-review.mp4" type="video/mp4">
+          </video>
+          <span class="shot__badge">▶ 動態</span>
+          <figcaption class="shot__cap">
+            <strong>複習翻卡</strong>——正面英文、翻面看解釋，
+            再按「學會了／還不會」決定這個字下次什麼時候再出現
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img src="assets/vocab-result.png" alt="測驗結果：正確率圓環、答對答錯統計，以及逐題的錯題對照" loading="lazy">
+          <figcaption class="shot__cap">
+            <strong>測驗結果</strong>——錯題逐題列出「你選了」與「正解」的對照，
+            讓檢討停在這一頁就能完成，不必回頭翻卡組
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img src="assets/vocab-stats.png" alt="學習統計：本月成果、熟練度分布甜甜圈、近 14 天複習量與 12 週打卡熱力圖" loading="lazy">
+          <figcaption class="shot__cap">
+            <strong>學習統計</strong>——本月成果附上月同期比較、熟練度分布、
+            近 14 天複習量與 12 週打卡熱力圖，四張圖表皆手刻 SVG
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <section>
+      <h2>接下來</h2>
+      <p class="section-note">已經排進 TODO 但還沒做的，誠實列出。</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>項目</th><th>為什麼還沒做</th></tr></thead>
+          <tbody>
+            <tr><td>使用者系統（Auth）</td><td>先用單一使用者跑通全部功能，避免過早引入權限複雜度</td></tr>
+            <tr><td>Server Action 信任邊界盤點</td><td>需要使用者身分才做得完整，跟 Auth 同批處理</td></tr>
+            <tr><td>元件 API 重構（4 項）</td><td>都要全站掃過呼叫端，集中處理比零散改有效率</td></tr>
+            <tr><td>多時區支援</td><td>目前使用者都在同一時區，等真的需要再做</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- PANEL 2：上課問答系統                              -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-class" role="tabpanel" aria-labelledby="tab-class" tabindex="0" hidden>
+
+    <div class="proj-head">
+      <p class="eyebrow">個人專案 · 2022 · 單人開發 · 仍在使用中</p>
+      <h2 class="proj-title">上課即時問答互動系統</h2>
+      <p class="proj-lede">
+        給老師在課堂上出題、學生即時作答的互動工具。
+        概念類似 Kahoot，功能與介面全部自行構想設計。
+      </p>
+      <div class="links">
+        <a class="btn btn--primary" href="https://new-for-class.web.app/" target="_blank" rel="noopener">開啟線上版 →</a>
+        <a class="btn" href="https://github.com/yoooman321/new-for-class" target="_blank" rel="noopener">GitHub 原始碼</a>
+        <span class="note-inline">需要登入，可來信索取 demo 帳號</span>
+      </div>
+    </div>
+
+    <section>
+      <h2>為什麼這個專案值得看</h2>
+      <p class="section-note">它不是做完就放著的 demo。</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card__head"><p class="card__title">做完四年，到現在還在被使用</p></div>
+          <p class="card__body">
+            這套系統目前仍在<strong>大學課堂實際使用中</strong>——由一位老師固定拿來做課堂問答。
+            從「做出來」到「持續被人依賴」是完全不同的兩件事：它必須夠穩定、
+            介面要讓不熟悉 3C 的老師也能自己操作，出問題時我得真的去修。
+          </p>
+          <p class="pull">有真實使用者的專案，才會逼你面對「好不好用」而不只是「能不能動」。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>功能</h2>
+      <p class="section-note">從老師出題到學生作答、再到課後檢討的完整流程。</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>模組</th><th>做了什麼</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>加入課堂</strong></td>
+              <td>老師開場投影 QR Code，學生掃碼、輸入暱稱就能加入——<strong>不必註冊帳號、不必手打網址</strong></td>
+            </tr>
+            <tr>
+              <td><strong>出題</strong></td>
+              <td>一份考題可含多題，逐題設定題型、選項與正確答案，左側清單可快速切換與刪除</td>
+            </tr>
+            <tr>
+              <td><strong>三種題型</strong></td>
+              <td><strong>單選題</strong>（有正解、計分）、<strong>問答題</strong>（自由文字作答）、<strong>統計題</strong>（無正解，用來蒐集意見）</td>
+            </tr>
+            <tr>
+              <td><strong>課堂控制</strong></td>
+              <td>每題可設定作答秒數、是否即時顯示「目前戰況」、整份考題結束後是否顯示排行</td>
+            </tr>
+            <tr>
+              <td><strong>即時回饋</strong></td>
+              <td>倒數結束立刻跳出作答分布長條圖與「答對區／答錯區」分組；同一時間學生手機也收到自己的對錯結果</td>
+            </tr>
+            <tr>
+              <td><strong>歷史紀錄</strong></td>
+              <td>課後可從「總覽 / 玩家列表 / 問題列表」三種角度回查，也能點進單一學生看逐題明細</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>技術</h2>
+      <p class="section-note">選 Firebase 是因為即時同步是這個產品的核心需求。</p>
+      <div class="stack" style="margin-bottom:1.5rem">
+        <span class="chip">Vue 3</span>
+        <span class="chip">Vite</span>
+        <span class="chip">Pinia</span>
+        <span class="chip">Vue Router</span>
+        <span class="chip">Firebase Realtime DB</span>
+        <span class="chip">Firebase Auth</span>
+        <span class="chip">Firebase Hosting</span>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card__head"><p class="card__title">為什麼用 Firebase</p></div>
+          <p class="card__body">
+            課堂問答的核心是<strong>即時性</strong>——學生一按下答案，老師畫面的統計就要跟著跳。
+            自己架 WebSocket 伺服器要處理連線管理、重連、擴展；
+            Firebase 的即時資料庫直接提供訂閱機制，加上 Auth 和 Hosting 是同一套，
+            <strong>對單人開發的專案來說是把力氣花在功能而不是基礎設施上</strong>。
+          </p>
+        </div>
+        <div class="card">
+          <div class="card__head"><p class="card__title">介面全部自己設計</p></div>
+          <p class="card__body">
+            沒有設計稿也沒有 UI 框架的現成版型，從資訊架構到每個按鈕的位置都自己決定。
+            出題頁採「左側題目清單 + 右側編輯區」的雙欄結構，
+            讓老師在多題之間切換時不會迷失位置；未填寫的題目在清單上直接標紅，
+            送出前就知道哪裡還沒完成。
+          </p>
+          <p class="card__body">
+            使用情境也影響了設計：上課只有短短幾分鐘，<strong>任何一個多餘步驟都會讓流程卡住</strong>。
+            所以學生端不做註冊、不打網址，掃 QR Code 輸入暱稱就開始；
+            成績檢討則反過來，允許從「總覽 / 玩家 / 問題」三個角度切入，因為那是課後慢慢看的。
+          </p>
+          <p class="pull">同一套資料，課堂上要最快，課後要最完整——介面該長什麼樣，是使用情境決定的。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>畫面</h2>
+      <p class="section-note">依課堂實際流程排序：出題 → 即時作答 → 課後檢討。</p>
+      <div class="shots shots--class">
+
+        <figure class="shot">
+          <img src="assets/class-editor.png" alt="出題頁：左側為題目清單，右側為單題的編輯區" loading="lazy">
+          <figcaption class="shot__cap">
+            <strong>出題頁</strong>——左側清單可在多題之間快速切換，未填寫的題目直接標紅；
+            右側設定題型、選項與作答秒數
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <video muted loop playsinline preload="metadata" poster="assets/class-live-poster.jpg"
+                 aria-label="即時問答示範影片：老師端與學生手機並排，作答後統計即時更新">
+            <source src="assets/class-live.mp4" type="video/mp4">
+          </video>
+          <span class="shot__badge">▶ 動態</span>
+          <figcaption class="shot__cap">
+            <strong>即時問答</strong>——老師端與學生手機同畫面錄製，
+            學生一送出答案，老師的統計立刻更新
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img src="assets/class-history-summary.png" alt="歷史紀錄總覽：玩家列表顯示每位學生的答對率、未答題數與分數" loading="lazy">
+          <figcaption class="shot__cap">
+            <strong>歷史紀錄總覽</strong>——一場考題的成績列表，
+            另有「總覽 / 玩家列表 / 問題列表」三種切入角度
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img src="assets/class-history-student.png" alt="單一學生的答題明細：逐題列出題型、作答內容與對錯" loading="lazy">
+          <figcaption class="shot__cap">
+            <strong>學生答題明細</strong>——逐題列出作答內容；
+            問答題與統計題標為「沒有對錯」，右上角可直接翻到下一位學生
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <section>
+      <h2>四年後回頭看</h2>
+      <p class="section-note">這個專案跟現在的我，中間差了什麼。</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th></th><th>2022 · 上課問答系統</th><th>2026 · VocabMaster</th></tr></thead>
+          <tbody>
+            <tr><td><strong>做法</strong></td><td>想到什麼做什麼，邊做邊調整</td><td>先排程、先畫設計稿、決策寫進文件</td></tr>
+            <tr><td><strong>資料設計</strong></td><td>依畫面需要決定結構</td><td>先想清楚要回答什麼問題，再決定存什麼</td></tr>
+            <tr><td><strong>取捨</strong></td><td>想到的功能都做</td><td>會刻意砍功能，並寫下為什麼</td></tr>
+            <tr><td><strong>驗證</strong></td><td>畫面看起來對就好</td><td>用實測數據判斷（如兩百萬筆的查詢量測）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="foot">
+    <span>李侑蓮 Fei · 前端工程師 · 2026</span>
+    <a class="mono" href="mailto:yoooman321@gmail.com">yoooman321@gmail.com</a>
+  </div>
+
+</div>
+
+<script>
+  (function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+
+    function select(tab) {
+      tabs.forEach(function (t) {
+        var selected = t === tab;
+        t.setAttribute('aria-selected', String(selected));
+        t.tabIndex = selected ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+      });
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { select(tab); });
+      tab.addEventListener('keydown', function (e) {
+        var next = null;
+        if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+        if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+        if (e.key === 'Home') next = tabs[0];
+        if (e.key === 'End') next = tabs[tabs.length - 1];
+        if (next) { e.preventDefault(); select(next); next.focus(); }
+      });
+    });
+  })();
+
+  // 影片：只在捲到畫面內才播，離開就暫停（省流量、避免多支同時播）
+  (function () {
+    var videos = document.querySelectorAll('.shot video');
+    if (!videos.length) return;
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduced) {
+      // 不自動播放，改成給使用者自己控制
+      videos.forEach(function (v) { v.controls = true; });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var v = entry.target;
+        if (entry.isIntersecting) {
+          var p = v.play();
+          if (p) p.catch(function () { v.controls = true; }); // 瀏覽器擋自動播放時的退路
+        } else {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.35 });
+
+    videos.forEach(function (v) {
+      v.muted = true;              // 自動播放的前提，屬性與 property 都設一次比較保險
+      v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
+      io.observe(v);
+    });
+  })();
+</script>
+
+</body>
+</html>
