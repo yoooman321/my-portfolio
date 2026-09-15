@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>李侑蓮 履歷表</title>
+<style>
+  @page { size: A4; margin: 10mm 12mm; }
+  * { box-sizing: border-box; }
+  :root{ --ink:#16202b; --soft:#46556a; --faint:#7d8898; --rule:#dfe4ea; --accent:#0d7264; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:"PingFang TC","Noto Sans TC","Heiti TC",-apple-system,sans-serif;
+    color:var(--ink); font-size:8.8pt; line-height:1.52; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  .mono{ font-family:"SF Mono","IBM Plex Mono",Menlo,monospace; }
+
+  header{ padding-bottom:7pt; border-bottom:1.6pt solid var(--ink); }
+  .name{ font-size:21pt; font-weight:700; letter-spacing:.02em; line-height:1.1; margin:0; }
+  .name small{ font-size:10pt; font-weight:500; color:var(--faint); letter-spacing:.06em; margin-left:6pt; }
+  .role{ font-size:10pt; font-weight:600; color:var(--accent); margin:2.5pt 0 4pt; letter-spacing:.03em; }
+  .contact{ font-size:8.1pt; color:var(--soft); line-height:1.62; }
+  .contact span+span::before{ content:"｜"; color:var(--rule); }
+
+  .row{ display:block; position:relative; padding:4.5pt 0 0 62pt; }
+  .row + .row{ border-top:.6pt solid var(--rule); }
+  .label{ position:absolute; left:0; top:8pt; width:54pt; }
+  .label b{ display:block; font-size:8.4pt; font-weight:700; letter-spacing:.1em; }
+  .label i{ display:block; font-style:normal; font-size:6.2pt; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-top:.5pt; }
+  .body{ padding-bottom:4pt; }
+
+  .summary{ margin:0; color:var(--soft); }
+  .summary b{ color:var(--ink); font-weight:600; }
+
+  .sk{ display:flex; gap:7pt; margin-bottom:2pt; }
+  .sk:last-child{ margin-bottom:0; }
+  .sk dt{ width:42pt; flex:none; font-size:8pt; color:var(--faint); padding-top:.5pt; }
+  .sk dd{ margin:0; flex:1; }
+
+  .job{ margin-bottom:4pt; break-inside:avoid; }
+  .slim{ margin:1pt 0 0; color:var(--soft); }
+  .job:last-child{ margin-bottom:0; }
+  .job__head{ display:flex; align-items:baseline; gap:6pt; }
+  .job__t{ font-size:9.5pt; font-weight:700; margin:0; }
+  .job__co{ font-size:8.5pt; color:var(--soft); }
+  .job__more{ font-size:7.6pt; font-weight:600; white-space:nowrap; }
+  .job__d{ margin-left:auto; font-size:7.6pt; color:var(--faint); white-space:nowrap; }
+  ul{ margin:1.5pt 0 0; padding-left:10.5pt; }
+  li{ margin-bottom:0; color:var(--soft); }
+  li b{ color:var(--ink); font-weight:600; }
+  .stack{ font-size:7.6pt; color:var(--accent); margin-top:1.5pt; }
+
+  .proj{ margin-bottom:6pt; break-inside:avoid; }
+  .proj:last-child{ margin-bottom:0; }
+  .proj__lede{ font-size:8.4pt; color:var(--soft); margin:.5pt 0 0; }
+  .links{ font-size:7.6pt; margin-top:1.5pt; }
+  .links span+span::before{ content:"·"; color:var(--rule); margin:0 4pt; }
+
+  .line{ display:flex; gap:6pt; margin-bottom:1pt; }
+  .line:last-child{ margin-bottom:0; }
+  .line dt{ width:48pt; flex:none; font-size:8pt; color:var(--faint); }
+  .line dd{ margin:0; flex:1; color:var(--soft); }
+
+  /* 螢幕上以 A4 紙張呈現；列印時隱藏工具列 */
+  .toolbar{ display:flex; gap:14pt; justify-content:flex-end; font-size:9pt; margin-bottom:10pt; }
+  .toolbar a{ font-weight:600; }
+  @media screen{
+    html{ background:#e9edf1; }
+    body{ max-width:210mm; margin:24px auto; padding:10mm 12mm; background:#fff; box-shadow:0 2px 16px #16202b1f; }
+  }
+  @media screen and (max-width:220mm){
+    body{ margin:0; padding:16px; box-shadow:none; }
+    .contact, .links, .stack{ overflow-wrap:anywhere; }
+    .row{ padding-left:0; }
+    .label{ position:static; width:auto; margin-bottom:2pt; }
+    .label b, .label i{ display:inline; margin-right:4pt; }
+    .job__head{ flex-wrap:wrap; }
+    .job__d{ margin-left:0; width:100%; }
+  }
+  @media print{ .toolbar{ display:none; } }
+</style>
+</head>
+<body>
+
+<nav class="toolbar"><a href="index.html">← 作品集</a><a href="resume.pdf" download="李侑蓮-履歷表.pdf">下載 PDF ↓</a></nav>
+
+<header>
+  <h1 class="name">李侑蓮<small>Fei</small></h1>
+  <p class="role">前端工程師 · Frontend Engineer</p>
+  <div class="contact">
+    <span class="mono">0928-058-977</span><span class="mono">yoooman321@gmail.com</span><span>台中市</span><br>
+    <span class="mono">github.com/yoooman321</span><span class="mono">作品集 <a href="https://yoooman321.github.io/my-portfolio/">yoooman321.github.io/my-portfolio</a></span>
+  </div>
+</header>
+
+<div class="row">
+  <div class="label"><b>簡介</b><i>Profile</i></div>
+  <div class="body">
+    <p class="summary">
+      <b>5 年以上網頁開發經驗</b>（Vue 3 年、React 1 年半），起步於 QA，養成注重細節的習慣。擅長把設計稿完整落地——動手前先確認空狀態、錯誤狀態與 RWD，並把技術決策的「為什麼」與「代價」寫進文件。具 <b>4 人前後端小組帶領</b>與前後端分離重構經驗；近期開發 <b>AI 客服機器人平台</b>，並善用 <b>Claude Code</b> 等 AI 工具加速開發。
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="label"><b>技能</b><i>Skills</i></div>
+  <div class="body">
+    <dl style="margin:0">
+      <div class="sk"><dt>前端</dt><dd>Vue 3 / Vue 2、React 19、TypeScript、TanStack Query、JavaScript、Next.js (App Router)、Pinia、Vite、Tailwind CSS、HTML / CSS、RWD</dd></div>
+      <div class="sk"><dt>後端資料</dt><dd>PHP、MySQL、PostgreSQL、Prisma、Firebase (Realtime DB / Auth)、API 設計</dd></div>
+      <div class="sk"><dt>工具部署</dt><dd>Git、Webpack、Vercel、Firebase Hosting、Figma、Code Review、Ranorex 自動化測試</dd></div>
+    </dl>
+  </div>
+</div>
+
+<div class="row">
+  <div class="label"><b>工作經歷</b><i>Experience</i></div>
+  <div class="body">
+
+    <div class="job">
+      <div class="job__head"><h3 class="job__t">前端工程師</h3><span class="job__co">智訓科技</span><span class="job__d mono">2025/02 – 2026/07 · 1 年 6 個月</span></div>
+      <ul>
+        <li>開發讓客戶<b>自行打造 AI 客服機器人</b>的平台前端（<b>Element Web</b> 客製化），以直覺化介面設定 <b>prompt、對話狀態與例外處理</b>。</li>
+        <li>運用 <b>Claude Code</b> 快速掌握 Element Web 大型開源程式碼，定位需修改的模組與資料流，再經自行審查後<b>改寫既有邏輯</b>、串接 Agent 相關 API。</li>
+        <li>接手擴充品牌客戶的<b>保固管理後台</b>（主要貢獻者）：信件變數編輯器、動態維修表單、序號匯入匯出、成員權限（<a href="https://yoooman321.github.io/my-portfolio/#warranty">作品集介紹 →</a>）。</li>
+      </ul>
+      <div class="stack mono">React · TypeScript · TanStack Query · Polaris · Element Web · Git</div>
+    </div>
+
+    <div class="job">
+      <div class="job__head"><h3 class="job__t">全端工程師</h3><span class="job__co">德塔數位有限公司</span><span class="job__d mono">2021/07 – 2025/02 · 3 年 8 個月</span></div>
+      <ul>
+        <li>海外娛樂平台前台與官網開發；<b>2024 年由前端轉為全端</b>，負責 API 設計、資料欄位規劃與 SQL 效能優化。</li>
+        <li><b>帶領 4 人團隊</b>（1 位前端、3 位後端），主導 Code Review；推動舊專案<b>前後端分離</b>提升維護效率。</li>
+        <li>以 Vue 開發轉檔工具串接 <b>Google Docs API</b>，將文件自動轉為 <b>.vue 檔</b>，每篇<b>從 10 分鐘縮短至 1 分鐘</b>（<a href="https://yoooman321.github.io/my-portfolio/#docs">作品集介紹 →</a>）；調整 Webpack 設定改善 PageSpeed，績效多月排名第一。</li>
+      </ul>
+      <div class="stack mono">Vue 2 / Vue 3 · JavaScript · PHP · MySQL · Git</div>
+    </div>
+
+    <div class="job">
+      <div class="job__head"><h3 class="job__t">網頁前端工程師</h3><span class="job__co">鳳之梧數位科技 台灣分公司</span><span class="job__d mono">2020/06 – 2021/04 · 11 個月</span></div>
+      <ul>
+        <li>多廠商、多樣式平台開發：<b>抽離重複功能為共用 component</b> 提升複用性，並與後端、設計、QA 協作串接與切版。</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__head"><h3 class="job__t">品質保證測試專員</h3><span class="job__co">向上國際</span><span class="job__d mono">2018/04 – 2019/08 · 1 年 5 個月</span></div>
+      <p class="slim">產品時程掌控、測試計畫撰寫與線上問題處理；以 Ranorex 設計<b>自動化測試腳本</b>並撰寫教學文件協助新人上手。</p>
+    </div>
+
+    <div class="job">
+      <div class="job__head"><h3 class="job__t">軟體測試副工程師</h3><span class="job__co">中佑資訊</span><span class="job__d mono">2016/07 – 2017/09 · 1 年 3 個月</span></div>
+      <p class="slim">撰寫測試流程、描述並回報 bug，與工程師溝通修正方式並執行複驗。</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="label"><b>個人作品</b><i>Projects</i></div>
+  <div class="body">
+
+    <div class="proj">
+      <div class="job__head"><h3 class="job__t">VocabMaster — 間隔重複背單字 App</h3><a class="job__more" href="https://yoooman321.github.io/my-portfolio/#vocab">作品集完整介紹 →</a><span class="job__d mono">2026/07 – 09 · 單人開發</span></div>
+      <p class="proj__lede">兩個月從規劃、開發到部署上線：62 個 React 元件、20 份設計稿、3 張資料表、701 行技術筆記。</p>
+      <ul>
+        <li><b>六階段間隔重複排程演算法</b>為核心；以 Server Action + transaction + 指數退避重試，確保排程與複習歷史一致。</li>
+        <li>學習統計頁四張圖表<b>全部手刻 SVG</b>；以<b>兩百萬筆實測</b>取代直覺判斷（全表掃描 70ms → 覆蓋索引 &lt;1ms），據此決定不做 partition。</li>
+        <li>排除三個<b>僅在正式環境出現</b>的問題：靜態預渲染凍結資料、Prisma 引擎無法進 serverless、UTC 時區換算錯位。</li>
+        <li><b>AI 協作</b>：在 repo 以 <span class="mono">AGENTS.md</span> 將 AI 設定為<b>技術導師而非代寫</b>——只給方向與提示、不直接給答案；自己實作後再請 AI code review，並依回饋修正。</li>
+      </ul>
+      <div class="stack mono">Next.js 16 · React 19 · TypeScript · Prisma 6 · PostgreSQL · Tailwind CSS 4 · Vercel</div>
+      <div class="links mono"><span><a href="https://vocal-master-seven.vercel.app/">vocal-master-seven.vercel.app</a></span><span><a href="https://github.com/yoooman321/study-hard">github.com/yoooman321/study-hard</a></span></div>
+    </div>
+
+    <div class="proj">
+      <div class="job__head"><h3 class="job__t">上課即時問答互動系統</h3><a class="job__more" href="https://yoooman321.github.io/my-portfolio/#class">作品集完整介紹 →</a><span class="job__d mono">2022 · 單人開發 · 仍在使用中</span></div>
+      <p class="proj__lede">給老師課堂出題、學生即時作答的互動工具，概念類似 Kahoot，功能與介面全部自行構想設計。</p>
+      <ul>
+        <li><b>完成四年後仍在大學課堂實際使用</b>——由一位老師固定用於課堂問答，需長期穩定且非工程背景也能自行操作。</li>
+        <li>學生<b>掃 QR Code、輸入暱稱即加入</b>，免註冊；支援單選／問答／統計題型，倒數結束即顯示作答分布與對錯分組。</li>
+        <li>課後可從<b>總覽 / 玩家列表 / 問題列表</b>三種角度回查，並深入單一學生的逐題明細。</li>
+      </ul>
+      <div class="stack mono">Vue 3 · Vite · Pinia · Vue Router · Firebase Realtime DB / Auth / Hosting</div>
+      <div class="links mono"><span><a href="https://new-for-class.web.app/">new-for-class.web.app</a></span><span><a href="https://github.com/yoooman321/new-for-class">github.com/yoooman321/new-for-class</a></span><span style="color:var(--faint)">需登入，可來信索取 demo 帳號</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="label"><b>學歷 · 其他</b><i>Education</i></div>
+  <div class="body">
+    <dl style="margin:0">
+      <div class="line"><dt>學歷 · 語言</dt><dd>國立中央大學 資訊工程學系（2012/09 – 2016/06）　｜　英文 中等（TOEIC）· 日文 基礎（JLPT N4）</dd></div>
+      <div class="line"><dt>求職條件</dt><dd>全職／前端工程師｜台中市或完全遠端｜錄取後一個月可到職</dd></div>
+    </dl>
+  </div>
+</div>
+
+</body>
+</html>
