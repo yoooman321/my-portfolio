@@ -583,26 +583,6 @@
           <p class="pull">一個點了沒反應的控制項，比沒有那個控制項更糟——使用者會以為 App 壞了。</p>
         </div>
 
-        <div class="card">
-          <div class="card__head">
-            <span class="card__date">09/04</span>
-            <p class="card__title">用數據回答「需不需要 partition」</p>
-          </div>
-          <p class="card__body">擔心複習紀錄長大後查詢變慢，於是建了一張兩百萬筆的測試表實際量測，而不是憑感覺加索引或提早分區。</p>
-          <div class="table-scroll" style="margin-top:.85rem">
-            <table>
-              <thead><tr><th>情況</th><th>執行計畫</th><th class="num">查一個月</th></tr></thead>
-              <tbody>
-                <tr><td>沒有索引</td><td><code>SCAN</code>（全表掃描）</td><td class="num">70 ms</td></tr>
-                <tr><td>有索引</td><td><code>SEARCH USING COVERING INDEX</code></td><td class="num">&lt; 1 ms</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="card__body" style="margin-top:.85rem">
-            結論是索引綽綽有餘，partition 解決的通常是<strong>維運</strong>問題而不是查詢速度。
-            並順手修正一個誤解：高基數不會讓索引變差，反而讓它更有效。
-          </p>
-        </div>
 
       </div>
     </section>
@@ -891,7 +871,6 @@
             <tr><td><strong>做法</strong></td><td>想到什麼做什麼，邊做邊調整</td><td>先排程、先畫設計稿、決策寫進文件</td></tr>
             <tr><td><strong>資料設計</strong></td><td>依畫面需要決定結構</td><td>先想清楚要回答什麼問題，再決定存什麼</td></tr>
             <tr><td><strong>取捨</strong></td><td>想到的功能都做</td><td>會刻意砍功能，並寫下為什麼</td></tr>
-            <tr><td><strong>驗證</strong></td><td>畫面看起來對就好</td><td>用實測數據判斷（如兩百萬筆的查詢量測）</td></tr>
           </tbody>
         </table>
       </div>

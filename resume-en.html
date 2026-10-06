@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fei Li — Resume</title>
+<style>
+  @page { size: A4; margin: 10mm 12mm; }
+  * { box-sizing: border-box; }
+  :root{ --ink:#16202b; --soft:#46556a; --faint:#7d8898; --rule:#dfe4ea; --accent:#0d7264; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:-apple-system,"Helvetica Neue","Inter","Segoe UI",Arial,"PingFang TC",sans-serif;
+    color:var(--ink); font-size:8.7pt; line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  .mono{ font-family:"SF Mono","IBM Plex Mono",Menlo,monospace; }
+
+  header{ padding-bottom:7pt; border-bottom:1.6pt solid var(--ink); }
+  .name{ font-size:21pt; font-weight:700; letter-spacing:.02em; line-height:1.1; margin:0; }
+  .name small{ font-size:10pt; font-weight:500; color:var(--faint); letter-spacing:.06em; margin-left:6pt; }
+  .role{ font-size:10pt; font-weight:600; color:var(--accent); margin:2.5pt 0 4pt; letter-spacing:.03em; }
+  .contact{ font-size:8.1pt; color:var(--soft); line-height:1.62; }
+  .contact span+span::before{ content:"｜"; color:var(--rule); }
+
+  .row{ display:block; position:relative; padding:4.5pt 0 0 66pt; }
+  .row + .row{ border-top:.6pt solid var(--rule); }
+  .label{ position:absolute; left:0; top:8pt; width:60pt; }
+  .label b{ display:block; font-size:8.4pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+  .label i{ display:block; font-style:normal; font-size:6.2pt; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-top:.5pt; }
+  .body{ padding-bottom:4pt; }
+
+  .summary{ margin:0; color:var(--soft); }
+  .summary b{ color:var(--ink); font-weight:600; }
+
+  .sk{ display:flex; gap:7pt; margin-bottom:2pt; }
+  .sk:last-child{ margin-bottom:0; }
+  .sk dt{ width:50pt; flex:none; font-size:8pt; color:var(--faint); padding-top:.5pt; }
+  .sk dd{ margin:0; flex:1; }
+
+  .job{ margin-bottom:4pt; break-inside:avoid; }
+  .slim{ margin:1pt 0 0; color:var(--soft); }
+  .job:last-child{ margin-bottom:0; }
+  .job__head{ display:flex; align-items:baseline; gap:6pt; }
+  .job__t{ font-size:9.5pt; font-weight:700; margin:0; }
+  .job__co{ font-size:8.5pt; color:var(--soft); }
+  .job__more{ font-size:7.6pt; font-weight:600; white-space:nowrap; }
+  .job__d{ margin-left:auto; font-size:7.6pt; color:var(--faint); white-space:nowrap; }
+  ul{ margin:1.5pt 0 0; padding-left:10.5pt; }
+  li{ margin-bottom:0; color:var(--soft); }
+  li b{ color:var(--ink); font-weight:600; }
+  .stack{ font-size:7.6pt; color:var(--accent); margin-top:1.5pt; }
+
+  .proj{ margin-bottom:6pt; break-inside:avoid; }
+  .proj:last-child{ margin-bottom:0; }
+  .proj__lede{ font-size:8.4pt; color:var(--soft); margin:.5pt 0 0; }
+  .links{ font-size:7.6pt; margin-top:1.5pt; }
+  .links span+span::before{ content:"·"; color:var(--rule); margin:0 4pt; }
+
+  .line{ display:flex; gap:6pt; margin-bottom:1pt; }
+  .line:last-child{ margin-bottom:0; }
+  .line dt{ width:58pt; flex:none; font-size:8pt; color:var(--faint); }
+  .line dd{ margin:0; flex:1; color:var(--soft); }
+
+  /* 螢幕上以 A4 紙張呈現；列印時隱藏工具列 */
+  .toolbar{ display:flex; gap:14pt; justify-content:flex-end; font-size:9pt; margin-bottom:10pt; }
+  .toolbar a{ font-weight:600; }
+  @media screen{
+    html{ background:#e9edf1; }
+    body{ max-width:210mm; margin:24px auto; padding:10mm 12mm; background:#fff; box-shadow:0 2px 16px #16202b1f; }
+  }
+  @media screen and (max-width:220mm){
+    body{ margin:0; padding:16px; box-shadow:none; }
+    .contact, .links, .stack{ overflow-wrap:anywhere; }
+    .row{ padding-left:0; }
+    .label{ position:static; width:auto; margin-bottom:2pt; }
+    .label b{ display:inline; }
+    .job__head{ flex-wrap:wrap; }
+    .job__d{ margin-left:0; width:100%; }
+  }
+  @media print{ .toolbar{ display:none; } }
+</style>
+</head>
+<body>
+
+<nav class="toolbar"><a href="index.html">← Portfolio</a><a href="resume.html">中文版</a><a href="Fei-Li-Resume-EN.pdf" download="Fei-Li-Resume-EN.pdf">Download PDF ↓</a></nav>
+
+<header>
+  <h1 class="name">Fei Li<small>李侑蓮</small></h1>
+  <p class="role">Frontend Engineer</p>
+  <div class="contact">
+    <span class="mono">+886 928-058-977</span><span class="mono">yoooman321@gmail.com</span><span>Taichung, Taiwan</span><br>
+    <span class="mono">github.com/yoooman321</span><span class="mono">Portfolio <a href="https://yoooman321.github.io/my-portfolio/">yoooman321.github.io/my-portfolio</a></span>
+  </div>
+</header>
+
+<div class="row">
+  <div class="label"><b>Profile</b></div>
+  <div class="body">
+    <p class="summary">
+      <b>Full-stack engineer, frontend-focused, with 5+ years of web development</b> (Vue 3 years, React 1.5 years). I check empty states, error states and responsive layouts before building, and write down the <i>why</i> and <i>trade-offs</i> behind technical decisions. Led a <b>4-person frontend/backend team</b>. Most recently built an <b>AI customer-service chatbot platform</b>, using <b>Claude Code</b> daily to navigate large codebases and speed up development.
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="label"><b>Skills</b></div>
+  <div class="body">
+    <dl style="margin:0">
+      <div class="sk"><dt>Frontend</dt><dd>Vue 3 / Vue 2, React 19, TypeScript, TanStack Query, JavaScript, Next.js, Pinia, Vite, Tailwind CSS, HTML / CSS, RWD</dd></div>
+      <div class="sk"><dt>Backend</dt><dd>PHP, API design, SQL (MySQL, PostgreSQL, Prisma), NoSQL (Firebase Realtime DB), Auth</dd></div>
+      <div class="sk"><dt>Tools</dt><dd>Git, Webpack, Vercel, Firebase Hosting, Figma, Code Review, Claude Code (I review every change before merging)</dd></div>
+    </dl>
+  </div>
+</div>
+
+<div class="row">
+  <div class="label"><b>Experience</b></div>
+  <div class="body">
+
+    <div class="job">
+      <div class="job__head"><h3 class="job__t">Frontend Engineer</h3><span class="job__co">Smart Training Technology (智訓科技)</span><span class="job__d mono">2025/02 – 2026/07 · 1 yr 6 mos</span></div>
+      <ul>
+        <li>Built the frontend of a platform where customers <b>create their own AI customer-service chatbots</b> (customized <b>Element Web</b>), configuring <b>prompts, conversation states and exception handling</b> through an intuitive UI.</li>
+        <li>Used <b>Claude Code</b> to get up to speed on the large Element Web open-source codebase and locate the modules and data flow to change, then reviewed the output myself and <b>rewrote existing logic</b> and integrated Agent-related APIs.</li>
+        <li>Took over and extended a brand client’s <b>warranty management back office</b> (main contributor): email-variable editor, dynamic repair forms, serial-number import/export, member permissions (<a href="https://yoooman321.github.io/my-portfolio/#warranty">Portfolio case study →</a>).</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__head"><h3 class="job__t">Full-Stack Engineer</h3><span class="job__co">Delta Digital (德塔數位)</span><span class="job__d mono">2021/07 – 2025/02 · 3 yrs 8 mos</span></div>
+      <ul>
+        <li>Built the frontend and corporate site of an overseas entertainment platform; <b>moved from frontend to full-stack in 2024</b>, owning API design and data-field planning. Tuned slow SQL (index changes, virtual tables, pagination on large tables), taking a page that kept crashing to <b>showing data within 20 seconds</b>.</li>
+        <li><b>Led a 4-person team</b> (1 frontend, 3 backend) and drove Code Review; pushed a legacy project through a <b>frontend–backend separation</b> to improve maintainability.</li>
+        <li>Built a Vue tool using the <b>Google Docs API</b> that converts documents into <b>.vue files</b>, cutting each article <b>from 10 minutes to 1 minute</b> (<a href="https://yoooman321.github.io/my-portfolio/#docs">Portfolio case study →</a>); tuned Webpack for PageSpeed; ranked first in output-based performance reviews for multiple months.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__head"><h3 class="job__t">Frontend Engineer</h3><span class="job__co">Phoenix Digital (鳳之梧數位科技), Taiwan Branch</span><span class="job__d mono">2020/06 – 2021/04 · 11 mos</span></div>
+      <ul>
+        <li>Worked on a multi-vendor, multi-theme platform: <b>extracted repeated features into shared components</b> (Vue 2) for reuse, and collaborated with backend, design and QA on integration and layout.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="label"><b>Projects</b></div>
+  <div class="body">
+
+    <div class="proj">
+      <div class="job__head"><h3 class="job__t">VocabMaster — Spaced-Repetition Vocabulary App</h3><a class="job__more" href="https://yoooman321.github.io/my-portfolio/#vocab">Full case study →</a><span class="job__d mono">2026/07 – 09 · Solo</span></div>
+      <ul>
+        <li>Solo build in two months, from planning to deployment: <b>six-stage spaced-repetition scheduler</b> with Server Actions, transactions and exponential-backoff retries; 62 React components, 701 lines of technical notes.</li>
+        <li>All four charts on the stats page are <b>hand-drawn SVG</b>; fixed three <b>production-only</b> bugs (static prerender freezing data, Prisma in serverless, UTC time zones).</li>
+        <li><b>AI collaboration</b>: set up the AI as a <b>tutor, not a ghostwriter</b> via <span class="mono">AGENTS.md</span>, giving hints but never answers; I implement first, then ask for AI code review and revise.</li>
+      </ul>
+      <div class="links mono"><span><a href="https://vocal-master-seven.vercel.app/">vocal-master-seven.vercel.app</a></span><span><a href="https://github.com/yoooman321/study-hard">github.com/yoooman321/study-hard</a></span></div>
+    </div>
+
+    <div class="proj">
+      <div class="job__head"><h3 class="job__t">Live Classroom Q&amp;A System</h3><a class="job__more" href="https://yoooman321.github.io/my-portfolio/#class">Full case study →</a><span class="job__d mono">2022 · Solo · Still in use</span></div>
+      <ul>
+        <li><b>Still used in a university classroom four years after completion</b>, regularly by one instructor, so it had to be stable and usable by non-engineers.</li>
+        <li>Kahoot-style tool for teachers to pose questions and students to answer live; students <b>join by QR code and nickname</b>, no sign-up. Results can be reviewed afterward by overview, player or question.</li>
+      </ul>
+      <div class="links mono"><span><a href="https://new-for-class.web.app/">new-for-class.web.app</a></span><span><a href="https://github.com/yoooman321/new-for-class">github.com/yoooman321/new-for-class</a></span><span style="color:var(--faint)">Demo account on request</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="label"><b>Education</b></div>
+  <div class="body">
+    <dl style="margin:0">
+      <div class="line"><dt>Degree</dt><dd>B.S. Computer Science, National Central University (2012–2016) ｜ Earlier: software QA, 2016–2019</dd></div>
+      <div class="line"><dt>Languages</dt><dd>English: intermediate (TOEIC) · Japanese: basic (JLPT N4) ｜ Seeking: full-time, Taichung or remote, immediate start</dd></div>
+    </dl>
+  </div>
+</div>
+
+</body>
+</html>
